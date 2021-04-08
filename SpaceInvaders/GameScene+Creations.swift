@@ -15,6 +15,7 @@ extension GameScene {
         sprite.position = self.spaceShip.position
         sprite.name = "shoot"
         sprite.zPosition = 1
+        sprite.position = CGPoint(x: sprite.position.x, y: sprite.position.y + self.enemiesVerticaSpacing)
         addChild(sprite)
         sprite.physicsBody = SKPhysicsBody(texture: sprite.texture!, size: sprite.size)
         sprite.physicsBody?.velocity = CGVector(dx: 0, dy: 500)
@@ -134,7 +135,7 @@ extension GameScene {
         sprite.physicsBody = SKPhysicsBody(texture: sprite.texture!, size: sprite.size)
         sprite.physicsBody?.affectedByGravity = true
         sprite.physicsBody?.linearDamping = 0
-        sprite.physicsBody?.contactTestBitMask = 0x00000100
+        sprite.physicsBody?.contactTestBitMask = 0x00001100
     }
 
 }

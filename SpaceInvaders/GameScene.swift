@@ -31,6 +31,12 @@ class GameScene: SKScene {
         self.spaceShip.size = CGSize(width: 50, height: 25)
         self.spaceShip.position = CGPoint(x: 0, y: spaceshipYPositon)
         self.addChild(self.spaceShip)
+        self.spaceShip.physicsBody = SKPhysicsBody(texture: self.spaceShip.texture!, size: self.spaceShip.size)
+        self.spaceShip.physicsBody?.categoryBitMask = 0x00001000
+        self.spaceShip.physicsBody?.contactTestBitMask = 0x00000000
+        self.spaceShip.physicsBody?.affectedByGravity = false
+        self.spaceShip.physicsBody?.isDynamic = false
+        
         
         self.addHouses(spaceshipYPositon)
         
