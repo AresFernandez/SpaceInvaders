@@ -118,7 +118,7 @@ extension GameScene {
         enemy.physicsBody?.contactTestBitMask = 0x00000000
         enemy.name = "Enemy_\(number)"
         enemy.physicsBody?.affectedByGravity = false
-        self.addChild(enemy)
+        self.enemiesContainer.addChild(enemy)
 
         enemy.run(SKAction.repeatForever(SKAction.animate(with: moveFrames,
                                                           timePerFrame: 1,

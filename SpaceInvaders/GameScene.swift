@@ -11,6 +11,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     var spaceShip: SKSpriteNode!
+    var enemiesContainer: SKNode!
     private let laserShootSound = SKAction.playSoundFileNamed("lasershoot.wav", waitForCompletion: false)
     let bombSound = SKAction.playSoundFileNamed("bomb.wav", waitForCompletion: false)
     let boomSound = SKAction.playSoundFileNamed("boom.wav", waitForCompletion: false)
@@ -21,6 +22,9 @@ class GameScene: SKScene {
     var currentScore: Int = 0
     let enemiesVerticaSpacing: CGFloat = 50.0
     var houseImpacts = [0, 0, 0, 0]
+    
+    var enemiesDirection: CGFloat = 1
+    var enemiesSpeed: CGFloat = 1
     
     override func didMove(to view: SKView) {
         let spaceshipYPositon = -(self.size.height / 2) + 100
@@ -39,7 +43,9 @@ class GameScene: SKScene {
         
         
         self.addHouses(spaceshipYPositon)
-        
+        self.enemiesContainer = SKNode()
+        self.enemiesContainer.position = CGPoint(x: 0, y: 0)
+        self.addChild(self.enemiesContainer)
         self.addEnemies(at: 100)
         
         self.physicsWorld.contactDelegate = self
@@ -97,6 +103,34 @@ class GameScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {
         self.cleanPastShoots()
+        
+        let enemies = self.enemiesContainer.children
+        for e in enemies {
+            e.position = CGPoint(x: e.position.x + self.enemiesDirection * self.enemiesSpeed, y: e.position.y)
+        }
+        let enemySpacing = self.size.width / 16
+        let startX = -(self.size.width / 2) + 30
+        let maximumEnemyRightPosition: CGFloat = startX + ( 1.5 * CGFloat(9) * enemySpacing ) + 50
+        let maximumEnemyLeftPosition: CGFloat = startX + ( 1.5 * CGFloat(0) * enemySpacing )
+        
+        
+        
+        for e in enemies {
+            if self.enemiesDirection > 0.5 {
+                print(e.position.x)
+                if e.position.x >= maximumEnemyRightPosition {
+                    self.enemiesDirection = -1
+                    
+                }
+            }
+            else{
+                if e.position.x <= maximumEnemyLeftPosition {
+                    self.enemiesDirection = 1
+                }
+            }
+        }
+        
+        
     }
 }
 
@@ -112,10 +146,10 @@ extension GameScene {
     
     @objc
     private func dropBomb() {
-        let bottomEnemies = self.children.filter { node in
+        let bottomEnemies = self.enemiesContainer.children.filter { node in
             guard let isEnemy = node.name?.hasPrefix("Enemy"), isEnemy == true else { return false }
             let bottomPosition = CGPoint(x: node.position.x, y: node.position.y - self.enemiesVerticaSpacing)
-            let enemies = self.nodes(at: bottomPosition)
+            let enemies = self.enemiesContainer.nodes(at: bottomPosition)
             
             return !enemies.reduce(false) { $0 || $1.name!.hasPrefix("Enemy") }
         }
