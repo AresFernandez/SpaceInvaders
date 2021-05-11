@@ -14,35 +14,35 @@ extension GameScene: SKPhysicsContactDelegate {
         guard let nodeB = contact.bodyB.node else { return }
 
         guard let nameA = nodeA.name, let nameB = nodeB.name else { return }
-        
+
         let oneNodeIsEnemy = nameA.hasPrefix("Enemy") || nameB.hasPrefix("Enemy")
         let oneNodeIsShoot = nameA == "shoot" || nameB == "shoot"
         let oneNodeIsBomb = nameA == "bomb" || nameB == "bomb"
         let oneNodeIsHouse = nameA.hasPrefix("house") || nameB.hasPrefix("house")
         let oneNodeIsSpaceShip = nameA == "spaceship" || nameB == "spaceship"
 
-        if oneNodeIsSpaceShip && oneNodeIsBomb{
+        if oneNodeIsSpaceShip && oneNodeIsBomb {
             self.currentScore -= 1
             self.scoreLabel.text = "SCORE: \(self.currentScore)"
             run(self.boomSound)
-            
+
             nodeA.name == "bomb" ? nodeA.removeFromParent() : nodeB.removeFromParent()
-            
+
             return
         }
-        
+
         if oneNodeIsEnemy && oneNodeIsShoot {
             nodeA.removeFromParent()
             nodeB.removeFromParent()
-            
+
             self.currentScore += 1
             self.scoreLabel.text = "SCORE: \(self.currentScore)"
-        
+
             run(self.boomSound)
-            
+
             return
         }
-        
+
         if oneNodeIsHouse && oneNodeIsBomb {
             run(self.bombSound)
             nodeA.removeFromParent()
@@ -61,4 +61,3 @@ extension GameScene: SKPhysicsContactDelegate {
         }
     }
 }
-

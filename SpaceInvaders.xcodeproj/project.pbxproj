@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -20,6 +20,7 @@
 		27ECB33F261231CD000710EF /* GameScene+PhysicsContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27ECB33E261231CD000710EF /* GameScene+PhysicsContacts.swift */; };
 		27FD59CA261F553000E6BB9C /* bomb.wav in Resources */ = {isa = PBXBuildFile; fileRef = 27FD59C9261F553000E6BB9C /* bomb.wav */; };
 		27FD59CD261F554400E6BB9C /* boom.wav in Resources */ = {isa = PBXBuildFile; fileRef = 27FD59CC261F554400E6BB9C /* boom.wav */; };
+		EFC2FAFC262F525300D23DBF /* SKTiledKit in Frameworks */ = {isa = PBXBuildFile; productRef = EFC2FAFB262F525300D23DBF /* SKTiledKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EFC2FAFC262F525300D23DBF /* SKTiledKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +113,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27877BA3260BB2820098EAC5 /* Build configuration list for PBXNativeTarget "SpaceInvaders" */;
 			buildPhases = (
+				EFC2FAF7262F453400D23DBF /* ShellScript */,
 				27877B8A260BB2810098EAC5 /* Sources */,
 				27877B8B260BB2810098EAC5 /* Frameworks */,
 				27877B8C260BB2810098EAC5 /* Resources */,
@@ -120,6 +123,9 @@
 			dependencies = (
 			);
 			name = SpaceInvaders;
+			packageProductDependencies = (
+				EFC2FAFB262F525300D23DBF /* SKTiledKit */,
+			);
 			productName = SpaceInvaders;
 			productReference = 27877B8E260BB2810098EAC5 /* SpaceInvaders.app */;
 			productType = "com.apple.product-type.application";
@@ -147,6 +153,9 @@
 				Base,
 			);
 			mainGroup = 27877B85260BB2810098EAC5;
+			packageReferences = (
+				EFC2FAFA262F525300D23DBF /* XCRemoteSwiftPackageReference "SKTiledKit" */,
+			);
 			productRefGroup = 27877B8F260BB2810098EAC5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -172,6 +181,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		EFC2FAF7262F453400D23DBF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		27877B8A260BB2810098EAC5 /* Sources */ = {
@@ -377,6 +406,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EFC2FAFA262F525300D23DBF /* XCRemoteSwiftPackageReference "SKTiledKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftStudies/SKTiledKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EFC2FAFB262F525300D23DBF /* SKTiledKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EFC2FAFA262F525300D23DBF /* XCRemoteSwiftPackageReference "SKTiledKit" */;
+			productName = SKTiledKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 27877B86260BB2810098EAC5 /* Project object */;
 }

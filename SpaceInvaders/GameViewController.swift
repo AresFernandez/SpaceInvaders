@@ -12,33 +12,33 @@ import GameplayKit
 class GameViewController: UIViewController {
 
     @IBOutlet weak var launchImage: UIImageView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let view = self.view as! SKView? {
+
+        if let view = self.view as? SKView?, view != nil {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFit
-                
+
                 // Present the scene
-                view.presentScene(scene)
+                view!.presentScene(scene)
             }
-            
-            view.ignoresSiblingOrder = true
-            
-            view.showsFPS = true
-            view.showsNodeCount = true
+
+            view!.ignoresSiblingOrder = true
+
+            view!.showsFPS = true
+            view!.showsNodeCount = true
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             self?.launchImage.isHidden = true
         }
     }
-    
+
     override var shouldAutorotate: Bool {
         return true
     }

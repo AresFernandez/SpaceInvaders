@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SKTiledKit",
+        "repositoryURL": "https://github.com/SwiftStudies/SKTiledKit",
+        "state": {
+          "branch": "main",
+          "revision": "b7481bb8df7d1cb0af0a3f28a37beb149f749f8c",
+          "version": null
+        }
+      },
+      {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser",
+        "state": {
+          "branch": null,
+          "revision": "831ed5e860a70e745bc1337830af4786b2576881",
+          "version": "0.4.1"
+        }
+      },
+      {
+        "package": "TiledKit",
+        "repositoryURL": "https://github.com/SwiftStudies/TiledKit",
+        "state": {
+          "branch": "development",
+          "revision": "73da6b5cf55a57fd4739082f25a092988e5775e5",
+          "version": null
+        }
+      },
+      {
+        "package": "XMLCoder",
+        "repositoryURL": "https://github.com/MaxDesiatov/XMLCoder.git",
+        "state": {
+          "branch": null,
+          "revision": "b8fa7fe4c0849f8a64cc246e71c5d976809222e4",
+          "version": "0.12.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
